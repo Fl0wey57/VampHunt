@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://cf6ub8v87fkxr"]
+
+[ext_resource type="Script" uid="uid://bv08jg5u2s1al" path="res://Scripts/main_menu.gd" id="1_28flt"]
+
+[node name="Main Menu" type="Node2D" unique_id=2042085114]
+script = ExtResource("1_28flt")
+
+[node name="Background Placeholder" type="ColorRect" parent="." unique_id=194962747]
+z_index = -1
+offset_right = 1024.0
+offset_bottom = 576.0
+color = Color(0.34331307, 8.018583e-05, 0.34331056, 1)
+
+[node name="Button_manager" type="Control" parent="." unique_id=907650487]
+z_index = 1
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+metadata/_edit_group_ = true
+
+[node name="Start" type="Button" parent="Button_manager" unique_id=43389009]
+z_index = 1
+layout_mode = 0
+offset_left = 50.0
+offset_top = 200.0
+offset_right = 250.0
+offset_bottom = 250.0
+text = "Start"
+
+[node name="Options" type="Button" parent="Button_manager" unique_id=900616228]
+z_index = 1
+layout_mode = 0
+offset_left = 50.0
+offset_top = 288.0
+offset_right = 250.0
+offset_bottom = 338.0
+text = "Options
+"
+
+[node name="Quit" type="Button" parent="Button_manager" unique_id=54486095]
+z_index = 1
+layout_mode = 0
+offset_left = 50.0
+offset_top = 376.0
+offset_right = 250.0
+offset_bottom = 426.0
+text = "Quit"
+
+[connection signal="pressed" from="Button_manager/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Button_manager/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Button_manager/Quit" to="." method="_on_quit_pressed"]
