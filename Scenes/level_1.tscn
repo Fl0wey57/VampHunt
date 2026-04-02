@@ -2,8 +2,12 @@
 
 [ext_resource type="Script" uid="uid://dcw1cw2t01wlm" path="res://Scripts/level_1.gd" id="1_8ffim"]
 [ext_resource type="PackedScene" uid="uid://tsjsftmovn4j" path="res://Scenes/aim.tscn" id="1_vk57k"]
+[ext_resource type="Script" uid="uid://c8h8fhsknth48" path="res://Scripts/vamp_spawn.gd" id="3_xfk5q"]
 
 [node name="level1" type="Node" unique_id=1417529213]
 script = ExtResource("1_8ffim")
 
 [node name="Aim" parent="." unique_id=1613267190 instance=ExtResource("1_vk57k")]
+
+[node name="Vamp_spawn" type="Node" parent="." unique_id=529956495]
+script = ExtResource("3_xfk5q")

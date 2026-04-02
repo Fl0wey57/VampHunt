@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://tsjsftmovn4j"]
 
 [ext_resource type="Script" uid="uid://daw6faj1cb7la" path="res://Scripts/aim.gd" id="1_hhvpt"]
-[ext_resource type="Texture2D" uid="uid://dwu4olp8hqc8o" path="res://icon.svg" id="1_ldytr"]
+[ext_resource type="Texture2D" uid="uid://dhe8uhvi3f2vi" path="res://Textures/aim.svg" id="2_hhvpt"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hhvpt"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_hhvpt"]
 
 [sub_resource type="Animation" id="Animation_hhvpt"]
 length = 0.001
@@ -100,18 +100,20 @@ script = ExtResource("1_hhvpt")
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1507203963]
 self_modulate = Color(1, 1, 1, 0.4117647)
 z_index = 1
-texture = ExtResource("1_ldytr")
+texture = ExtResource("2_hhvpt")
 
 [node name="Area2D" type="Area2D" parent="." unique_id=551392823]
-visible = false
 collision_layer = 0
 monitoring = false
 monitorable = false
 
 [node name="AreaCollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=634875256]
 scale = Vector2(7, 7)
-shape = SubResource("RectangleShape2D_hhvpt")
+shape = SubResource("CircleShape2D_hhvpt")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=513045458]
 libraries/ = SubResource("AnimationLibrary_35t0s")
 autoplay = &"idle"
+
+[node name="TimerShootCooldown" type="Timer" parent="." unique_id=883573696]
+one_shot = true

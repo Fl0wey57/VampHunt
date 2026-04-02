@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://bcfeu8h4j43hq"]
+
+[ext_resource type="Script" uid="uid://dh0a2psk88wuu" path="res://Scripts/vamp_default.gd" id="1_x5ox5"]
+[ext_resource type="Texture2D" uid="uid://dwu4olp8hqc8o" path="res://icon.svg" id="2_aqkf0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3qlw4"]
+size = Vector2(100, 100)
+
+[node name="VampDefault" type="CharacterBody2D" unique_id=770708566]
+script = ExtResource("1_x5ox5")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1092570605]
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_aqkf0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2143166505]
+shape = SubResource("RectangleShape2D_3qlw4")
