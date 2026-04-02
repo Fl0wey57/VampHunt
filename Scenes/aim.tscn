@@ -1,0 +1,117 @@
+[gd_scene format=3 uid="uid://tsjsftmovn4j"]
+
+[ext_resource type="Script" uid="uid://daw6faj1cb7la" path="res://Scripts/aim.gd" id="1_hhvpt"]
+[ext_resource type="Texture2D" uid="uid://dwu4olp8hqc8o" path="res://icon.svg" id="1_ldytr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hhvpt"]
+
+[sub_resource type="Animation" id="Animation_hhvpt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.4117647)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_35t0s"]
+resource_name = "idle"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Area2D:monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0.60784316)]
+}
+
+[sub_resource type="Animation" id="Animation_h4rmx"]
+resource_name = "shoot"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(0.13869642, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0.60784316)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Area2D:monitoring")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_35t0s"]
+_data = {
+&"RESET": SubResource("Animation_hhvpt"),
+&"idle": SubResource("Animation_35t0s"),
+&"shoot": SubResource("Animation_h4rmx")
+}
+
+[node name="Aim" type="Node2D" unique_id=1613267190]
+script = ExtResource("1_hhvpt")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1507203963]
+self_modulate = Color(1, 1, 1, 0.4117647)
+z_index = 1
+texture = ExtResource("1_ldytr")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=551392823]
+visible = false
+collision_layer = 0
+monitoring = false
+monitorable = false
+
+[node name="AreaCollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=634875256]
+scale = Vector2(7, 7)
+shape = SubResource("RectangleShape2D_hhvpt")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=513045458]
+libraries/ = SubResource("AnimationLibrary_35t0s")
+autoplay = &"idle"
