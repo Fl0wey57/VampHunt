@@ -8,14 +8,16 @@ extends Node2D
 ## timer for shoot cooldown oh yeah  
 @export var timer_cooldown:float = 1.0
 
+@export var bullet_flag:int = 0
+
 @onready var sprite_2d = $Sprite2D
 @onready var area_collision_shape_2d = $Area2D/AreaCollisionShape2D
 @onready var animation_player = $AnimationPlayer
 @onready var timer_shoot_cooldown: Timer = $TimerShootCooldown
 
 # Input Checkers
-var horizontal_axis:int
-var vertical_axis:int
+#var horizontal_axis:int
+#var vertical_axis:int
 # viewport
 var viewport:Vector2
 
@@ -28,22 +30,24 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	# Normalize inputs
-	horizontal_axis = int(Input.get_axis("left","right"))
-	vertical_axis = int(Input.get_axis("up","down"))
+	#horizontal_axis = int(Input.get_axis("left","right"))
+	#vertical_axis = int(Input.get_axis("up","down"))
 	#print("H:"+str(horizontal_axis)+" , V:"+str(vertical_axis))
 	
+	if Input.is_action_just_pressed("ouch"):
+		get_parent().player_damage.emit(1)
 	
 	if Input.is_action_just_pressed("shoot") and timer_shoot_cooldown.is_stopped():
 		Shoot()
 	
-	MoveCursor(horizontal_axis, vertical_axis, delta)
+	MoveCursor(get_global_mouse_position(), delta)
 
 ## The main function for moving the aim.[br]
 ## [param h] and [param v] are the horizontal and vertical distances to move,
 ## while [param d] is delta
-func MoveCursor(h:int, v:int, d: float) -> void:
-	var posx = position.x + h * aim_hspeed * d
-	var posy = position.y + v * aim_vspeed * d
+func MoveCursor(pos:Vector2, d: float) -> void:
+	var posx = pos.x
+	var posy = pos.y
 	
 	position.x = clamp(posx, 0, viewport.x)
 	position.y = clamp(posy, 0, viewport.y)

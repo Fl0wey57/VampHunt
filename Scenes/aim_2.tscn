@@ -1,9 +1,9 @@
-[gd_scene format=3 uid="uid://tsjsftmovn4j"]
+[gd_scene format=3 uid="uid://besf2tt4i3ewa"]
 
-[ext_resource type="Script" uid="uid://daw6faj1cb7la" path="res://Scripts/aim.gd" id="1_hhvpt"]
-[ext_resource type="Texture2D" uid="uid://dhe8uhvi3f2vi" path="res://Textures/aim.svg" id="2_hhvpt"]
+[ext_resource type="Script" uid="uid://daw6faj1cb7la" path="res://Scripts/aim.gd" id="1_6whfu"]
+[ext_resource type="Texture2D" uid="uid://dhe8uhvi3f2vi" path="res://Textures/aim.svg" id="2_65opc"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_hhvpt"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_4hsf1"]
 
 [sub_resource type="Animation" id="Animation_hhvpt"]
 length = 0.001
@@ -87,35 +87,37 @@ tracks/1/keys = {
 "values": [true, false]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_35t0s"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_axvj3"]
 _data = {
 &"RESET": SubResource("Animation_hhvpt"),
 &"idle": SubResource("Animation_35t0s"),
 &"shoot": SubResource("Animation_h4rmx")
 }
 
-[node name="aim" type="Node2D" unique_id=1613267190]
-script = ExtResource("1_hhvpt")
+[node name="aim2" type="Node2D" unique_id=1279136926]
+script = ExtResource("1_6whfu")
+timer_cooldown = 3.0
+bullet_flag = 1
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1507203963]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1628092395]
 self_modulate = Color(1, 1, 1, 0.4117647)
 z_index = 1
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("2_hhvpt")
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("2_65opc")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=551392823]
-scale = Vector2(0.5, 0.5)
+[node name="Area2D" type="Area2D" parent="." unique_id=924391172]
+scale = Vector2(0.8, 0.8)
 collision_layer = 0
 monitoring = false
 monitorable = false
 
-[node name="AreaCollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=634875256]
+[node name="AreaCollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=420136759]
 scale = Vector2(7, 7)
-shape = SubResource("CircleShape2D_hhvpt")
+shape = SubResource("CircleShape2D_4hsf1")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=513045458]
-libraries/ = SubResource("AnimationLibrary_35t0s")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1462009460]
+libraries/ = SubResource("AnimationLibrary_axvj3")
 autoplay = &"idle"
 
-[node name="TimerShootCooldown" type="Timer" parent="." unique_id=883573696]
+[node name="TimerShootCooldown" type="Timer" parent="." unique_id=650188420]
 one_shot = true
