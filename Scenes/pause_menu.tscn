@@ -1,0 +1,45 @@
+[gd_scene format=3 uid="uid://n305rb64cfnb"]
+
+[ext_resource type="Script" uid="uid://8hytubvlhngx" path="res://Scripts/pause_menu.gd" id="1_emv3i"]
+
+[node name="Pause Menu" type="CanvasLayer" unique_id=13567355]
+process_mode = 3
+layer = 5
+script = ExtResource("1_emv3i")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1105116472]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.14901961)
+
+[node name="Resume" type="Button" parent="." unique_id=616042336]
+anchors_preset = -1
+anchor_left = 0.098000005
+anchor_top = 0.347
+anchor_right = 0.5
+anchor_bottom = 0.521
+offset_left = -25.352005
+offset_top = 0.12799072
+offset_right = -37.000244
+offset_bottom = -0.095458984
+theme_override_font_sizes/font_size = 40
+text = "Resume"
+
+[node name="Quit" type="Button" parent="." unique_id=1767564178]
+anchors_preset = -1
+anchor_left = 0.054
+anchor_top = 0.347
+anchor_right = 0.5
+anchor_bottom = 0.521
+offset_left = 494.704
+offset_top = 0.12799072
+offset_right = 438.0
+offset_bottom = -0.0960083
+theme_override_font_sizes/font_size = 40
+text = "Quit to main menu"
+
+[connection signal="pressed" from="Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]
