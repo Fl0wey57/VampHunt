@@ -11,7 +11,3 @@ script = ExtResource("1_8ffim")
 script = ExtResource("3_xfk5q")
 
 [node name="player" parent="." unique_id=964935834 instance=ExtResource("3_7p6j4")]
-stats_max_hp = null
-stats_start_coins = null
-extra_gun_unlock = null
-start_gun_index = null
