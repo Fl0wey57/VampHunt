@@ -11,29 +11,34 @@ extends Node2D
 
 ## The int registering which vampires this gun can kill
 @export var bullet_flag:int = 0
+## The amount of damage this gun type inflicts
+@export var damage_amount:int = 10
 
 # Child nodes
 @onready var sprite_2d = $Sprite2D as Sprite2D
-@onready var area_collision_shape_2d = $Area2D/AreaCollisionShape2D as CollisionShape2D
-@onready var animation_player = $AnimationPlayer as AnimationPlayer
-@onready var timer_shoot_cooldown = $TimerShootCooldown as Timer
+@onready var area_2d = $Area2D as Area2D
 
 # viewport
 var viewport:Vector2
 
-## Initial transparency for when not shooting
-var initial_transparency:int
+## Initial color for when not shooting
+var initial_transparency:Color
+## Color to be applied once a shoot is pressed
+var shoot_transparency:Color
+## Check to not shoot while recharging
+var is_on_cooldown:bool = false
 
 func _ready() -> void:
-	initial_transparency = sprite_2d.self_modulate.a
-	timer_shoot_cooldown.wait_time = timer_cooldown
+	initial_transparency = sprite_2d.self_modulate
+	shoot_transparency = Color("ffffff37")
 	viewport = get_viewport().get_visible_rect().size
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ouch"):
 		get_parent().player_damage.emit(1)
 	
-	if Input.is_action_just_pressed("shoot") and timer_shoot_cooldown.is_stopped():
+	#CHECK HERE
+	if Input.is_action_just_pressed("shoot") and !is_on_cooldown:
 		Shoot()
 	
 	MoveCursor(get_global_mouse_position())
@@ -51,7 +56,15 @@ func MoveCursor(pos:Vector2) -> void:
 ## The main function for shooting.[br]
 ## [b][u]Cancels all previous animations, including itself.[/u][/b]
 func Shoot() -> void:
-	print("pew")
-	animation_player.stop()
-	animation_player.play("shoot")
-	timer_shoot_cooldown.start()
+	# Checks for collision with all vamps in aim
+	var bodies := area_2d.get_overlapping_bodies()
+	for i in bodies:
+		if i is Vamp:
+			(i as Vamp).Take_Damage(damage_amount)
+	
+	# Handles the code animation for cooldown using Tween
+	is_on_cooldown = true
+	sprite_2d.self_modulate = shoot_transparency
+	var shoot_tween = get_tree().create_tween()
+	shoot_tween.tween_property(sprite_2d,"self_modulate",initial_transparency,timer_cooldown).set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_CUBIC)
+	shoot_tween.tween_callback(func(): is_on_cooldown = false)

@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dcw1cw2t01wlm" path="res://Scripts/level_1.gd" id="1_8ffim"]
 [ext_resource type="PackedScene" uid="uid://d2u7ef5eihgus" path="res://Scenes/player.tscn" id="3_7p6j4"]
 [ext_resource type="Script" uid="uid://c8h8fhsknth48" path="res://Scripts/vamp_spawn.gd" id="3_xfk5q"]
+[ext_resource type="PackedScene" uid="uid://bcfeu8h4j43hq" path="res://Scenes/vamp_default.tscn" id="4_7p6j4"]
 
 [node name="level1" type="Node" unique_id=1417529213]
 script = ExtResource("1_8ffim")
@@ -11,3 +12,6 @@ script = ExtResource("1_8ffim")
 script = ExtResource("3_xfk5q")
 
 [node name="player" parent="." unique_id=964935834 instance=ExtResource("3_7p6j4")]
+
+[node name="VampDefault" parent="." unique_id=770708566 instance=ExtResource("4_7p6j4")]
+position = Vector2(1004, 280)
